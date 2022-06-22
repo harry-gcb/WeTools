@@ -4,6 +4,9 @@ aux_source_directory(${PROJECT_SOURCE_DIR}/app/moc SRC_LIST)
 # qt5_wrap_cpp(SRC_LIST ${PROJECT_SOURCE_DIR}/app/desktop/qt_desktop.h)
 
 include_directories(${QT_LIBRARY_PATH}/include)
+include_directories(${QT_LIBRARY_PATH}/include/QtCore)
+include_directories(${QT_LIBRARY_PATH}/include/QtWidgets)
+include_directories(${QT_LIBRARY_PATH}/include/QtGui)
 
 link_directories(${QT_LIBRARY_PATH}/lib)
 
@@ -17,9 +20,12 @@ ELSE ()
 ENDIF (CMAKE_SYSTEM_NAME MATCHES "Linux") 
 
 
-target_link_libraries(WeTools PRIVATE Qt5Widgets Qt5Core)
+target_link_libraries(WeTools PRIVATE Qt5Widgets Qt5Core Qt5Gui)
 
 add_custom_command(TARGET WeTools
     PRE_BUILD
     COMMAND ${QT_LIBRARY_PATH}\\bin\\moc.exe ${PROJECT_SOURCE_DIR}\\app\\desktop\\qt_desktop.h -o ${PROJECT_SOURCE_DIR}\\app\\moc\\moc_desktop.cpp
+    COMMAND ${QT_LIBRARY_PATH}\\bin\\moc.exe ${PROJECT_SOURCE_DIR}\\app\\desktop\\qt_sidebar.h -o ${PROJECT_SOURCE_DIR}\\app\\moc\\moc_sidebar.cpp
+    COMMAND ${QT_LIBRARY_PATH}\\bin\\moc.exe ${PROJECT_SOURCE_DIR}\\app\\desktop\\qt_drawer.h -o ${PROJECT_SOURCE_DIR}\\app\\moc\\moc_drawer.cpp
+    COMMAND ${QT_LIBRARY_PATH}\\bin\\moc.exe ${PROJECT_SOURCE_DIR}\\app\\desktop\\qt_content.h -o ${PROJECT_SOURCE_DIR}\\app\\moc\\moc_content.cpp
 )
