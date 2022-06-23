@@ -28,4 +28,6 @@ add_custom_command(TARGET WeTools
     COMMAND ${QT_LIBRARY_PATH}\\bin\\moc.exe ${PROJECT_SOURCE_DIR}\\app\\desktop\\qt_sidebar.h -o ${PROJECT_SOURCE_DIR}\\app\\moc\\moc_sidebar.cpp
     COMMAND ${QT_LIBRARY_PATH}\\bin\\moc.exe ${PROJECT_SOURCE_DIR}\\app\\desktop\\qt_drawer.h -o ${PROJECT_SOURCE_DIR}\\app\\moc\\moc_drawer.cpp
     COMMAND ${QT_LIBRARY_PATH}\\bin\\moc.exe ${PROJECT_SOURCE_DIR}\\app\\desktop\\qt_content.h -o ${PROJECT_SOURCE_DIR}\\app\\moc\\moc_content.cpp
+    COMMAND ${QT_LIBRARY_PATH}\\bin\\moc.exe ${PROJECT_SOURCE_DIR}\\app\\desktop\\qt_movewidget.h -o ${PROJECT_SOURCE_DIR}\\app\\moc\\moc_movewidget.cpp
+    COMMAND ${QT_LIBRARY_PATH}\\bin\\moc.exe ${PROJECT_SOURCE_DIR}\\app\\desktop\\qt_businesscard.h -o ${PROJECT_SOURCE_DIR}\\app\\moc\\moc_businesscard.cpp
 )
