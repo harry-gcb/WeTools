@@ -1,24 +1,43 @@
 #include "QtGui/QGuiApplication"
 #include "qt_sidebar.h"
+#include "qt_tools.h"
+
+// sidebar控件配置
+#define SIDEBAR_BTN_WIDTH 36
+#define SIDEBAR_BTN_HEIGHT 36
+#define SIDEBAR_BUSINESSCARD_BTN_OBJNAME "SideBar_businessCardButton_"
+#define SIDEBAR_MESSAGE_BTN_OBJNAME "SideBar_messageButton_"
+#define SIDEBAR_CONTACT_BTN_OBJNAME "SideBar_contactButton_"
+#define SIDEBAR_REDIS_BTN_OBJNAME "SideBar_redisButton_"
+// sidebar贴图
+#define SIDEBAR_BUSINESSCARD_BTN_IMAGE ":/image/public/avatar.jpg"
 
 Qt_SideBar::Qt_SideBar(QWidget *parent): Qt_MoveWidget(parent) {
     businessCardWidget_ = new Qt_BusinessCard(this);
 
     businessCardButton_ = new QPushButton(this);
-    businessCardButton_->setFixedSize(27, 27);
-    businessCardButton_->setObjectName("Qt_SideBar::businessCardButton_");
+    businessCardButton_->setFixedSize(SIDEBAR_BTN_WIDTH, SIDEBAR_BTN_HEIGHT);
+    businessCardButton_->setObjectName(SIDEBAR_BUSINESSCARD_BTN_OBJNAME);
+    Qt_Tools::getInstance()->setButtonPixmap(businessCardButton_, SIDEBAR_BUSINESSCARD_BTN_IMAGE);
 
     messageButton_ = new QPushButton(this);
-    messageButton_->setFixedSize(27, 27);
-    messageButton_->setObjectName("Qt_SideBar::messageButton_");
+    messageButton_->setFixedSize(SIDEBAR_BTN_WIDTH, SIDEBAR_BTN_HEIGHT);
+    messageButton_->setObjectName(SIDEBAR_MESSAGE_BTN_OBJNAME);
 
     contactButton_ = new QPushButton(this);
-    contactButton_->setFixedSize(27, 27);
-    contactButton_->setObjectName("Qt_SideBar::contactButton_");
+    contactButton_->setFixedSize(SIDEBAR_BTN_WIDTH, SIDEBAR_BTN_HEIGHT);
+    contactButton_->setObjectName(SIDEBAR_CONTACT_BTN_OBJNAME);
 
     redisButton_ = new QPushButton(this);
-    redisButton_->setFixedSize(27, 27);
-    redisButton_->setObjectName("Qt_SideBar::redisButton_");
+    redisButton_->setFixedSize(SIDEBAR_BTN_WIDTH, SIDEBAR_BTN_HEIGHT);
+    redisButton_->setObjectName(SIDEBAR_REDIS_BTN_OBJNAME);
+
+    buttonGroup_ = new QButtonGroup(this);
+    buttonGroup_->addButton(businessCardButton_, 0);
+    buttonGroup_->addButton(messageButton_, 1);
+    buttonGroup_->addButton(contactButton_, 2);
+    buttonGroup_->addButton(redisButton_, 3);
+    buttonGroup_->setExclusive(true);
 
     layout_ = new QVBoxLayout;
     layout_->addWidget(businessCardButton_);
